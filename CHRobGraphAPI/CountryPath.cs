@@ -19,7 +19,14 @@ namespace CHRobGraphAPI
         #endregion
 
         #region PROPERTIES
-        public string Destination { get => _destination;}
+        public string Destination { 
+            get => _destination; 
+            set {
+                Stack<string> originalStack = _cpath.FindPath("USA", value);
+                _destination = value;
+                _list = GetReversePath(originalStack);
+            } 
+        }
         /// <summary>
         /// JSON property to be returned on API call
         /// </summary>
@@ -48,11 +55,5 @@ namespace CHRobGraphAPI
             return reversedStack;
         }
         #endregion
-        public CountryPath(string dest)
-        {
-            Stack<string> originalStack = _cpath.FindPath("USA", dest);
-            _destination = dest;
-            _list = GetReversePath(originalStack);
-        }
     }
 }

@@ -32,6 +32,8 @@ namespace CHRobGraphAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CHRobGraphAPI", Version = "v1" });
             });
+
+            services.AddScoped<IPath, CountryPath>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

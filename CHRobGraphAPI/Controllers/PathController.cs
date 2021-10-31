@@ -12,16 +12,19 @@ namespace CHRobGraphAPI.Controllers
     public class PathController : ControllerBase
     {
         private readonly ILogger<PathController> _logger;
+        private readonly IPath path;
 
-        public PathController(ILogger<PathController> logger)
+        public PathController(ILogger<PathController> logger, IPath path)
         {
             _logger = logger;
+            this.path = path;
         }
 
         [HttpGet("{countrycode}")]
-        public IPath Get(string countrycode)
+        public IActionResult Get(string countrycode)
         {
-            return new CountryPath(countrycode);
+            path.Destination = countrycode;
+            return Ok(path);
         }
     }
 }
