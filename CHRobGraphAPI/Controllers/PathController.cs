@@ -24,7 +24,15 @@ namespace CHRobGraphAPI.Controllers
         public IActionResult Get(string countrycode)
         {
             path.Destination = countrycode;
-            return Ok(path);
+            
+            if(path.List == null)
+            {
+                return NotFound(path);
+            }
+            else
+            {
+                return Ok(path);
+            }
         }
     }
 }

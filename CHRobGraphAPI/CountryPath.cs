@@ -13,17 +13,18 @@ namespace CHRobGraphAPI
         /// </summary>
         private PathModel _cpath = new PathModel();
 
-        private string _destination { get; set; }
+        private string _destination;
 
-        private Stack<string> _list { get; set; }
+        private Stack<string> _list;
         #endregion
 
         #region PROPERTIES
         public string Destination { 
             get => _destination; 
             set {
-                Stack<string> originalStack = _cpath.FindPath("USA", value);
-                _destination = value;
+                _destination = value.ToUpper();
+                Stack<string> originalStack = _cpath.FindPath("USA", _destination);
+                
                 _list = GetReversePath(originalStack);
             } 
         }
